@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://1ui8ncw0qiri"]
+
+[ext_resource type="Shader" path="res://post_process.gdshader" id="1_upor1"]
+[ext_resource type="Texture2D" uid="uid://cg8fpbbhntq7b" path="res://playerBlue_dead.png" id="2_5s5v0"]
+[ext_resource type="Shader" path="res://crystal_shine.gdshader" id="2_btu86"]
+[ext_resource type="Texture2D" uid="uid://de068jn4t82i7" path="res://set2_tiles.png" id="2_f4p70"]
+[ext_resource type="Script" path="res://spin.gd" id="3_cgqci"]
+[ext_resource type="Script" path="res://camera.gd" id="5_62lhd"]
+[ext_resource type="Texture2D" uid="uid://bdcn2fcx756f0" path="res://blueCrystal.png" id="6_wo84r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0uhtb"]
+shader = ExtResource("1_upor1")
+shader_parameter/spacing = 1.862
+shader_parameter/dissapate = 0.05
+shader_parameter/bg_amount = 0.2
+shader_parameter/background_tex = ExtResource("2_f4p70")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ar3e"]
+shader = ExtResource("2_btu86")
+
+[node name="game" type="SubViewportContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+use_debanding = true
+size = Vector2i(1152, 648)
+render_target_clear_mode = 2
+render_target_update_mode = 4
+
+[node name="fx_layer" type="CanvasLayer" parent="SubViewport"]
+layer = -1
+follow_viewport_scale = 2.0
+
+[node name="display_fade_blur" type="ColorRect" parent="SubViewport/fx_layer"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_0uhtb")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="scene" type="Node2D" parent="SubViewport"]
+z_index = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/scene"]
+material = SubResource("ShaderMaterial_5ar3e")
+position = Vector2(411, 242)
+texture = ExtResource("2_5s5v0")
+script = ExtResource("3_cgqci")
+
+[node name="Camera2D" type="Camera2D" parent="SubViewport/scene"]
+ignore_rotation = false
+editor_draw_screen = false
+script = ExtResource("5_62lhd")
+
+[node name="Sprite2D2" type="Sprite2D" parent="SubViewport/scene"]
+position = Vector2(230, 190)
+scale = Vector2(4.96667, 4.96667)
+texture = ExtResource("6_wo84r")
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="SubViewport"]
+copy_mode = 2

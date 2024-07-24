@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://c0vj2grhr4wno"]
+
+[ext_resource type="Shader" path="res://crystal_shine.gdshader" id="1_73t82"]
+[ext_resource type="Texture2D" uid="uid://cg8fpbbhntq7b" path="res://playerBlue_dead.png" id="2_6eqjf"]
+[ext_resource type="Script" path="res://spin.gd" id="3_48dbv"]
+[ext_resource type="Script" path="res://camera.gd" id="4_8kcmu"]
+[ext_resource type="Shader" path="res://post_process.gdshader" id="5_4l7d8"]
+[ext_resource type="Texture2D" uid="uid://bdcn2fcx756f0" path="res://blueCrystal.png" id="6_5s4sr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kc2wh"]
+shader = ExtResource("5_4l7d8")
+shader_parameter/spacing = 0.1
+shader_parameter/dissapate = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ar3e"]
+shader = ExtResource("1_73t82")
+
+[node name="game" type="Node"]
+
+[node name="display_fade_blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_kc2wh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 2
+follow_viewport_enabled = true
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="CanvasLayer2"]
+copy_mode = 2
+
+[node name="scene" type="Node2D" parent="CanvasLayer2"]
+z_index = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer2/scene"]
+material = SubResource("ShaderMaterial_5ar3e")
+position = Vector2(411, 242)
+texture = ExtResource("2_6eqjf")
+script = ExtResource("3_48dbv")
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer2/scene"]
+position = Vector2(230, 190)
+scale = Vector2(4.96667, 4.96667)
+texture = ExtResource("6_5s4sr")
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer2/scene"]
+editor_draw_screen = false
+script = ExtResource("4_8kcmu")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2/scene/Camera2D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
