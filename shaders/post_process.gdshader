@@ -27,19 +27,19 @@ void fragment() {
 	}
 
 	vec2 bg_uv1 = vec2(cos(TIME * 0.1), sin(TIME * 0.2))
-	 + uv * (2.0 + sin(TIME * 0.15)) + vec2(cos(TIME * 0.4), sin(TIME)) * 0.1;
+	 + uv * (2.0 + sin(TIME * 0.15)) + vec2(sin((uv.x + TIME) * 0.4), sin(TIME)) * 0.1;
 	vec2 bg_uv2 = vec2(cos(TIME * 0.3) * 0.5, sin(TIME * 0.1))
-	 + uv * (2.3 + sin(TIME * 0.10)) + vec2(cos(TIME * 0.3), sin(TIME * 0.7)) * 0.1;
+	 + uv * (2.3 + cos((uv.y + TIME) * 0.10)) + vec2(cos(TIME * 0.3), sin(TIME * 0.7)) * 0.1;
 	bg_uv2.x = cos(bg_uv1.x + sin(bg_uv2.y));
 	bg_uv2.y = sin(bg_uv1.y + cos(bg_uv2.x));
 	bg_uv1 += avg_color.xy;
 	bg_uv1 += camera_pos * 0.001;
 	bg_uv2 += camera_pos * 0.0001;
 	vec3 bgcol = texture(background_tex, bg_uv1).rgb + texture(background_tex, bg_uv2).rgb;
-	bgcol = max(sin(bgcol * 3.0) * 0.2, vec3(0.0));
+	bgcol = max((0.5 + sin(bgcol * 3.0)) * 0.2, vec3(0.0));
 	
 	COLOR = vec4(mix(
-		avg_color,
+		avg_color + bgcol * 0.1,
 		bgcol * bg_amount,
 		dissapate
 	), 1.0);
