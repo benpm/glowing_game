@@ -10,6 +10,3 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	t += delta
-	position.x = cos(t) * 100
-	position.y = sin(t) * 100
-	zoom = Vector2.ONE * (1.0 + sin(t) * 0.5)

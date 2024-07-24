@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdcn2fcx756f0"
-path="res://.godot/imported/blueCrystal.png-a8ebcbd9358f0d121b716c9a4d71d23f.ctex"
+uid="uid://de068jn4t82i7"
+path="res://.godot/imported/set2_tiles.png-0c733db0a0d423143003ec5ab5175a00.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://blueCrystal.png"
-dest_files=["res://.godot/imported/blueCrystal.png-a8ebcbd9358f0d121b716c9a4d71d23f.ctex"]
+source_file="res://backgrounds/set2_tiles.png"
+dest_files=["res://.godot/imported/set2_tiles.png-0c733db0a0d423143003ec5ab5175a00.ctex"]
 
 [params]
 

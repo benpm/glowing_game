@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://l15les5aynys"]
+
+[ext_resource type="Script" path="res://objects/player.gd" id="1_fb4i8"]
+[ext_resource type="Texture2D" uid="uid://dhl87kq7pux22" path="res://sprite_sheets/monochrome_tilemap_transparent_packed.png" id="1_fh8kd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tboyb"]
+size = Vector2(14, 17)
+
+[sub_resource type="Animation" id="Animation_hla8c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 13)]
+}
+
+[sub_resource type="Animation" id="Animation_5s65l"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 13)]
+}
+
+[sub_resource type="Animation" id="Animation_aqmoq"]
+resource_name = "run"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(1, 13), Vector2i(2, 13), Vector2i(3, 13)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_038k4"]
+_data = {
+"RESET": SubResource("Animation_hla8c"),
+"idle": SubResource("Animation_5s65l"),
+"run": SubResource("Animation_aqmoq")
+}
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_fb4i8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_tboyb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_fh8kd")
+hframes = 20
+vframes = 20
+frame = 261
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_038k4")
+}

@@ -5,7 +5,7 @@ void vertex() {
 }
 
 void fragment() {
-	vec4 color = texture(TEXTURE, UV);
+	vec4 color = texture(TEXTURE, UV) - vec4(0.1);
 	color += vec4(
 		sin(TIME * 2.0 * 0.25 + SCREEN_UV.x * 10.0) * 0.1,
 		cos(TIME * 1.5 * 0.25 + SCREEN_UV.y * 8.0) * 0.1,
