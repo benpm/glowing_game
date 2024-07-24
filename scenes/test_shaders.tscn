@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8inn1ofbm4bc"]
+
+[ext_resource type="PackedScene" uid="uid://bjyarj0ev7s5e" path="res://objects/global.tscn" id="1_j8nit"]
+[ext_resource type="Texture2D" uid="uid://dhl87kq7pux22" path="res://sprite_sheets/monochrome_tilemap_transparent_packed.png" id="2_j0ca0"]
+
+[node name="TestShaders" type="Node"]
+
+[node name="game" parent="." instance=ExtResource("1_j8nit")]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(292, 223)
+texture = ExtResource("2_j0ca0")

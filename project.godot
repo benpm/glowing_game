@@ -11,18 +11,21 @@ config_version=5
 [application]
 
 config/name="plant_game"
-run/main_scene="res://scene.tscn"
+run/main_scene="res://scenes/scene.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://objects/global.tscn"
+game="*res://objects/global.tscn"
 
 [display]
 
 window/size/transparent=true
 window/stretch/aspect="ignore"
+window/stretch/scale=2.0
+window/stretch/scale_mode="integer"
+window/vsync/vsync_mode=0
 
 [rendering]
 

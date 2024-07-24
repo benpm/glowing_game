@@ -1,14 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://1ui8ncw0qiri"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bujbhvivkuv53"]
 
-[ext_resource type="Shader" path="res://shaders/crystal_shine.gdshader" id="2_btu86"]
-[ext_resource type="Script" path="res://scripts/camera.gd" id="5_62lhd"]
-[ext_resource type="Texture2D" uid="uid://dhl87kq7pux22" path="res://sprite_sheets/monochrome_tilemap_transparent_packed.png" id="8_sud6i"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_k5jns"]
-shader = ExtResource("2_btu86")
+[ext_resource type="Texture2D" uid="uid://dhl87kq7pux22" path="res://sprite_sheets/monochrome_tilemap_transparent_packed.png" id="1_vslln"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4gpov"]
-texture = ExtResource("8_sud6i")
+texture = ExtResource("1_vslln")
 1:0/0 = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
@@ -1432,98 +1427,7 @@ texture = ExtResource("8_sud6i")
 19:19/0/physics_layer_0/angular_velocity = 0.0
 19:19/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSet" id="TileSet_dda14"]
+[resource]
 physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
 sources/0 = SubResource("TileSetAtlasSource_4gpov")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tboyb"]
-size = Vector2(14, 17)
-
-[sub_resource type="Animation" id="Animation_aqmoq"]
-resource_name = "run"
-length = 0.3
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [Vector2i(1, 13), Vector2i(2, 13), Vector2i(3, 13)]
-}
-
-[sub_resource type="Animation" id="Animation_hla8c"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(1, 13)]
-}
-
-[sub_resource type="Animation" id="Animation_5s65l"]
-resource_name = "idle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(0, 13)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_038k4"]
-_data = {
-"RESET": SubResource("Animation_hla8c"),
-"idle": SubResource("Animation_5s65l"),
-"run": SubResource("Animation_aqmoq")
-}
-
-[node name="scene" type="Node2D"]
-z_index = 2
-texture_filter = 1
-
-[node name="TileMap" type="TileMap" parent="."]
-texture_filter = 1
-material = SubResource("ShaderMaterial_k5jns")
-scale = Vector2(2, 2)
-tile_set = SubResource("TileSet_dda14")
-format = 2
-layer_0/tile_data = PackedInt32Array(917518, 524288, 7, 917517, 524288, 7, 917519, 524288, 7, 917520, 524288, 7, 917521, 524288, 7, 917522, 524288, 7, 917523, 524288, 7, 917524, 524288, 7, 917525, 524288, 7, 917526, 524288, 7, 917527, 524288, 7, 917528, 524288, 7, 917529, 524288, 7, 917530, 524288, 7, 917531, 524288, 7, 917532, 524288, 7, 917533, 524288, 7, 917534, 524288, 7, 917509, 524288, 7, 917510, 524288, 7, 917511, 524288, 7, 917512, 524288, 7, 917513, 524288, 7, 917514, 524288, 7, 917515, 524288, 7, 917516, 524288, 7)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-ignore_rotation = false
-editor_draw_screen = false
-script = ExtResource("5_62lhd")
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_tboyb")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-texture = ExtResource("8_sud6i")
-hframes = 20
-vframes = 20
-frame = 261
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
-libraries = {
-"": SubResource("AnimationLibrary_038k4")
-}

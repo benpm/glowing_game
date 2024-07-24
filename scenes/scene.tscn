@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://1ui8ncw0qiri"]
+
+[ext_resource type="Shader" path="res://shaders/crystal_shine.gdshader" id="1_mb4wh"]
+[ext_resource type="TileSet" uid="uid://bujbhvivkuv53" path="res://objects/tileset.tres" id="2_ip315"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="3_yudq1"]
+[ext_resource type="PackedScene" uid="uid://l15les5aynys" path="res://objects/player.tscn" id="4_ii0l3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k5jns"]
+shader = ExtResource("1_mb4wh")
+
+[node name="scene" type="Node2D"]
+z_index = 2
+texture_filter = 1
+
+[node name="TileMap" type="TileMap" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_k5jns")
+tile_set = ExtResource("2_ip315")
+format = 2
+layer_0/tile_data = PackedInt32Array(917518, 524288, 7, 917517, 524288, 7, 917519, 524288, 7, 917520, 524288, 7, 917521, 524288, 7, 917522, 524288, 7, 917523, 524288, 7, 917524, 524288, 7, 917525, 524288, 7, 917526, 524288, 7, 917527, 524288, 7, 917528, 524288, 7, 917529, 524288, 7, 917530, 524288, 7, 917531, 524288, 7, 917532, 524288, 7, 917533, 524288, 7, 917534, 524288, 7, 917509, 524288, 7, 917510, 524288, 7, 917511, 524288, 7, 917512, 524288, 7, 917513, 524288, 7, 917514, 524288, 7, 917515, 524288, 7, 917516, 524288, 7)
+
+[node name="camera" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+editor_draw_screen = false
+script = ExtResource("3_yudq1")
+
+[node name="player" parent="." instance=ExtResource("4_ii0l3")]
+position = Vector2(185, 43)

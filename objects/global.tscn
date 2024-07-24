@@ -6,12 +6,14 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7rnoi"]
 shader = ExtResource("2_ylvhl")
-shader_parameter/spacing = 1.862
-shader_parameter/dissapate = 0.05
-shader_parameter/bg_amount = 0.2
+shader_parameter/spacing = 1.35
+shader_parameter/dissapate = 0.02
+shader_parameter/bg_amount = 0.9
+shader_parameter/camera_pos = Vector2(0, 0)
+shader_parameter/camera_delta = Vector2(0, 0)
 shader_parameter/background_tex = ExtResource("3_6rig1")
 
-[node name="Global" type="Node"]
+[node name="game" type="Node"]
 script = ExtResource("1_v8cyw")
 
 [node name="fx_layer" type="CanvasLayer" parent="."]
